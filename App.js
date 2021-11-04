@@ -1,15 +1,16 @@
+import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet, useColorScheme,
-  View
-} from 'react-native';
+import { useColorScheme } from 'react-native';
+import { Host } from 'react-native-portalize';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { enableScreens } from 'react-native-screens';
 import {
   Colors
 } from 'react-native/Libraries/NewAppScreen';
+import styled from 'styled-components/native';
+import AppNavigator from './src/navigation/Main';
 
+enableScreens(false);
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -19,36 +20,22 @@ const App = () => {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={{ flex: 1 }}>
-
-        <View style={{ flex: 1 }}>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <SafeAreaProvider style={backgroundStyle}>
+      <NavigationContainer>
+        <Host>
+          <AppNavigator />
+        </Host>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 };
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+const Container = styled.View`
+  flex: 1;
+  backgroundColor: white;
+  marginBottom: 10px;
+
+  paddingHorizontal:16px;
+`;
 
 export default App;
