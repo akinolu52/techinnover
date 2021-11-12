@@ -9,7 +9,7 @@ export default AppContainer = ({ children, light = true, scroll = true, padded =
         <View
             style={{
                 flex: 1,
-                paddingTop: padded ? insets.top : 0,
+                paddingTop: padded ? insets.top + 20 : 0,
                 backgroundColor: '#FFFFFF',
             }}>
             <StatusBar barStyle={light ? 'light-content' : 'dark-content'} />

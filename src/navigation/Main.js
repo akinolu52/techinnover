@@ -6,16 +6,16 @@ import profile from '@icons/Profile.png';
 import scan from '@icons/Scan.png';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Category from '@screens/Category';
-import HomeStack from './HomeStack';
 import React from 'react';
-import { Image, Pressable, StyleSheet, View } from 'react-native';
+import { Image, Platform, Pressable, StyleSheet, View } from 'react-native';
+import HomeStack from './HomeStack';
 
 const Tab = createBottomTabNavigator();
 
 const CustomButton = ({ children, onPress }) => (
     <Pressable onPress={onPress}
         style={{
-            top: -20,
+            top: -25,
             justifyContent: 'center',
             alignItems: 'center',
         }}
@@ -30,8 +30,6 @@ const CustomButton = ({ children, onPress }) => (
     </Pressable>
 );
 
-
-
 const MainNav = () => (
     <Tab.Navigator
         screenOptions={{
@@ -42,10 +40,8 @@ const MainNav = () => (
             tabBarInactiveTintColor: '#9FA5C0',
             tabBarActiveBackgroundColor: null,
             tabBarLabelStyle: styles.drawerLabelStyle,
-            tabBarItemStyle: {
-                marginBottom: 2,
-                marginTop: 6,
-            },
+            tabBarItemStyle: styles.tabBarItemStyle,
+            tabBarStyle: styles.tabBarStyle,
         }}
     >
         <Tab.Screen name="Home" component={HomeStack}
@@ -64,17 +60,7 @@ const MainNav = () => (
         <Tab.Screen name="Scan" component={Category}
             options={{
                 tabBarIcon: () => <Image source={scan} style={styles.icon} />,
-                // tabBarStyle: {
-                //     backgroundColor: '#1FCC79',
-                //     width: 56,
-                //     height: 56,
-                //     borderRadius: 56,
-                //     marginTop: -28,
-                //     borderWidth: 1,
-                //     borderColor: 'red'
-                // }
                 tabBarLabelStyle: {
-                    // borderWidth: 1,
                     top: 20
                 },
                 tabBarButton: props => <CustomButton {...props} />
@@ -101,15 +87,36 @@ const styles = StyleSheet.create({
     icon: {
         width: 24,
         height: 24,
+        // borderWidth: 1,
+        // borderColor: 'red'
     },
     drawerLabelStyle: {
         fontSize: 10,
         lineHeight: 12,
         fontWeight: "500",
         fontFamily: 'Inter-Medium',
-        marginTop: 4,
+        paddingTop: 0,
+        // borderWidth: 1
     },
     container: {
         backgroundColor: "white",
     },
+    tabBarItemStyle: {
+        marginBottom: 10,
+        justifyContent: "center",
+        alignItems: "center",
+        // borderWidth: 1
+    },
+    tabBarStyle: {
+        height: Platform.OS === "android" ? 60 : 90,
+        shadowColor: "rgba(0, 70, 207, 0.03)",
+        shadowOffset: {
+            width: 0,
+            height: -4,
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 56,
+
+        elevation: 5,
+    }
 });

@@ -4,7 +4,7 @@ import check from '@icons/check.png';
 import heart from '@icons/Heart.png';
 import food from '@images/food.png';
 import React, { useEffect, useRef } from 'react';
-import { Pressable } from 'react-native';
+import { Platform, Pressable } from 'react-native';
 import { Modalize } from 'react-native-modalize';
 import { Portal } from 'react-native-portalize';
 import styled from 'styled-components/native';
@@ -137,7 +137,7 @@ const Background = styled.ImageBackground`
 `;
 
 const BackIcon = styled(SmallIcon)`
-  top: 60px;
+  top: ${Platform.OS === 'android' ? "30px" : "60px"};
   left: 24px;
   borderRadius: 56px;
   width: 56px;

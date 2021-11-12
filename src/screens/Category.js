@@ -23,7 +23,7 @@ const DATA = [{
   avatar: user3,
   name: "Eilif Sonas",
   image: food1,
-  title: "Pancake",
+  title: "Salad",
   category: "Food",
   time: 60,
 }, {
