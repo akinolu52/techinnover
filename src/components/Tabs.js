@@ -3,21 +3,21 @@ import { Pressable, StyleSheet, View } from 'react-native';
 import Text from './Text';
 
 export default Tabs = memo(({ title1, title2, onPress, activeTab = 1 }) => {
-    const leftTabStyle = activeTab === 1 ? { ...tabStyles.tab, ...tabStyles.activeTab, } : { ...tabStyles.inactiveTab, ...tabStyles.tab };
+    const leftTabStyle = activeTab === 1 ? { ...tabStyles.tab, ...tabStyles.activeTab } : { ...tabStyles.inactiveTab, ...tabStyles.tab };
     const rightTabStyle = activeTab === 2 ? { ...tabStyles.tab, ...tabStyles.activeTab } : { ...tabStyles.tab, ...tabStyles.inactiveTab }
 
     const leftTextStyle = activeTab === 1 ? tabStyles.activeTabText : tabStyles.inactiveTabText;
-    const rightTextStyle = activeTab === 2 ? tabStyles.activeTabText : tabStyles.inactiveTabText;
+    // const rightTextStyle = activeTab === 2 ? tabStyles.activeTabText : tabStyles.inactiveTabText;
     return (
         <View style={tabStyles.tabContainer}>
             <View style={tabStyles.tabContent}>
-                <Pressable onPress={onPress} style={leftTabStyle}>
+                <Pressable onPress={() => onPress(1)} style={leftTabStyle}>
                     <Text style={leftTextStyle}>{title1}</Text>
                 </Pressable>
             </View>
             <View style={tabStyles.tabContent}>
-                <Pressable onPress={onPress} style={rightTabStyle}>
-                    <Text style={rightTextStyle}>{title2}</Text>
+                <Pressable onPress={() => onPress(2)} style={rightTabStyle}>
+                    <Text style={leftTextStyle}>{title2}</Text>
                 </Pressable>
             </View>
         </View>

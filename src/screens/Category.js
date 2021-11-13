@@ -44,7 +44,7 @@ const DATA = [{
 
 const Category = ({ navigation }) => {
   const [activeTab, setActiveTab] = useState(1);
-  const handleTabChange = () => setActiveTab(activeTab === 1 ? 2 : 1);
+  const handleTabChange = (tab = null) => setActiveTab(tab);
 
   return (
     <AppContainer light={false}>

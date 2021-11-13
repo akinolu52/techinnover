@@ -2,20 +2,17 @@ import React, { memo } from 'react';
 import styled from 'styled-components/native';
 import Text from './Text';
 
-export default Tag = memo(props => {
-    const { isActive, label = "All" } = props;
-    return (
-        <Container isActive={isActive}>
-            <Content
-                isActive={isActive}
-                fontWeight="bold"
-                fontSize={15}
-                lineHeight={18.15}
-                spacing={0.0004375}
-            >{label}</Content>
-        </Container>
-    )
-});
+export default Tag = memo(({ isActive, label = "All" }) => (
+    <Container isActive={isActive}>
+        <Content
+            isActive={isActive}
+            fontWeight="bold"
+            fontSize={15}
+            lineHeight={18.15}
+            spacing={0.0004375}
+        >{label}</Content>
+    </Container>
+));
 
 const Container = styled.View`
     height: 58px;

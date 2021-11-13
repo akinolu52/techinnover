@@ -21,19 +21,23 @@ const Details = ({ route, navigation }) => {
   const data = route?.params;
   const modalizeRef = useRef(null);
 
-  const onOpen = () => {
-    modalizeRef.current?.open();
-  };
+  const openModal = () => modalizeRef.current?.open();
+  const closeModal = () => modalizeRef.current?.close();
+
+  const goBack = () => {
+    closeModal();
+    return navigation.goBack();
+  }
 
   useEffect(() => {
-    onOpen();
+    openModal();
   }, []);
 
   return (
     <AppContainer padded={false}>
       <Container>
         <Background source={food}>
-          <Pressable onPress={() => navigation.goBack()}>
+          <Pressable onPress={goBack}>
             <BackIcon image={back} />
           </Pressable>
         </Background>

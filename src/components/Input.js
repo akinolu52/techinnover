@@ -2,10 +2,7 @@ import search from '@icons/search.png';
 import React, { memo } from 'react';
 import styled from 'styled-components/native';
 
-export default Input = memo(props => {
-    const {
-        placeholder = "Search"
-    } = props;
+export default Input = memo(({ placeholder = "Search" }) => {
     return (
         <Container>
             <Icon source={search} />

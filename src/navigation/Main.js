@@ -87,8 +87,6 @@ const styles = StyleSheet.create({
     icon: {
         width: 24,
         height: 24,
-        // borderWidth: 1,
-        // borderColor: 'red'
     },
     drawerLabelStyle: {
         fontSize: 10,
@@ -96,7 +94,6 @@ const styles = StyleSheet.create({
         fontWeight: "500",
         fontFamily: 'Inter-Medium',
         paddingTop: 0,
-        // borderWidth: 1
     },
     container: {
         backgroundColor: "white",
@@ -105,7 +102,6 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         justifyContent: "center",
         alignItems: "center",
-        // borderWidth: 1
     },
     tabBarStyle: {
         height: Platform.OS === "android" ? 60 : 90,
