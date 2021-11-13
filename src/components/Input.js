@@ -2,18 +2,18 @@ import search from '@icons/search.png';
 import React, { memo } from 'react';
 import styled from 'styled-components/native';
 
-export default Input = memo(({ placeholder = "Search" }) => {
-    return (
-        <Container>
-            <Icon source={search} />
-            <StyledInput
-                placeholder={placeholder}
-                placeholderTextColor="#9FA5C0"
-                clearButtonMode="always"
-            />
-        </Container>
-    )
-});
+export default Input = memo(({ placeholder = "Search", handleChange, value }) => (
+    <Container>
+        <Icon source={search} />
+        <StyledInput
+            value={value}
+            onChangeText={handleChange}
+            placeholder={placeholder}
+            placeholderTextColor="#9FA5C0"
+            clearButtonMode="always"
+        />
+    </Container>
+));
 
 const Container = styled.View`
     height: 56px;

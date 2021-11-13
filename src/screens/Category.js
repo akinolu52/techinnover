@@ -30,15 +30,15 @@ const DATA = [{
   avatar: user1,
   name: "Elena Shelby",
   image: food3,
-  title: "Pancake",
+  title: "Jollof",
   category: "Food",
   time: 60,
 }, {
   avatar: user2,
   name: "John Priyadi",
   image: food2,
-  title: "Pancake",
-  category: "Food",
+  title: "Beans",
+  category: "Fruit",
   time: 60,
 }];
 
@@ -46,11 +46,35 @@ const Category = ({ navigation }) => {
   const [activeTab, setActiveTab] = useState(1);
   const handleTabChange = (tab = null) => setActiveTab(tab);
 
+  const [dataList, setDataList] = useState(DATA);
+  const [query, setQuery] = useState('');
+
+  const handleSearch = val => {
+    setQuery(val);
+
+    if (val.length > 1) {
+      // handle search by filtering through the initial data
+      const result = dataList.filter(item => (
+        item?.title?.toLowerCase()?.includes(val?.toLowerCase())
+        || item?.name?.toLowerCase()?.includes(val?.toLowerCase()))
+      );
+
+      setDataList(result);
+    } else {
+      // return back the initial data
+      setDataList(DATA);
+    }
+  }
+
+
   return (
     <AppContainer light={false}>
       <Container>
         <PaddedContent>
-          <Input />
+          <Input
+            handleChange={handleSearch}
+            value={query}
+          />
 
           <View style={{ marginVertical: 24 }}>
             <Text color="#3E5481" fontSize={17} lineHeight={27} spacing={0.5} fontWeight="bold" style={{ marginBottom: 16 }}>Category</Text>
@@ -74,11 +98,23 @@ const Category = ({ navigation }) => {
 
         <BottomContent>
 
-          {DATA.map((item, index) => (
-            <CardContainer key={index} onPress={() => navigation.navigate('Details', { ...item })}>
-              <Card {...item} />
-            </CardContainer>
-          ))}
+          <>
+            {dataList?.length > 0 ? (
+              <>
+                {
+                  dataList.map((item, index) => (
+                    <CardContainer key={index} onPress={() => navigation.navigate('Details', { ...item })}>
+                      <Card {...item} />
+                    </CardContainer>
+                  ))
+                }
+              </>
+            ) : (
+              <View style={{ alignItems: 'center', flex: 1, }}>
+                <Text fontWeight="bold" fontSize={18} lineHeight={23}>No results from search</Text>
+              </View>
+            )}
+          </>
 
         </BottomContent>
       </Container>

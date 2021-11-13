@@ -9,7 +9,6 @@ import { Modalize } from 'react-native-modalize';
 import { Portal } from 'react-native-portalize';
 import styled from 'styled-components/native';
 
-
 const List = ({ content }) => (
   <ListContainer>
     <ListCheck source={check} />
